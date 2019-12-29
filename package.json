@@ -1,0 +1,22 @@
+{
+	"name": "ho",
+	"version": "1.0.0",
+	"description": "",
+	"main": "ho.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://archive.eldergods.com/ho"
+	},
+	"keywords": [],
+	"author": "jauntywunderkind",
+	"license": "MIT",
+	"module": "ho.js",
+	"esm": true,
+	"type": "module",
+	"dependencies": {
+		"jsdom": "^15.2.1"
+	}
+}
