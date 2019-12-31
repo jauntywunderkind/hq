@@ -1,19 +1,20 @@
 {
-	"name": "ho",
+	"name": "html-query-selector",
 	"version": "1.0.0",
 	"description": "",
-	"main": "ho.js",
+	"main": "html-query-selector.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
+	"bin": "./html-query-selector.js",
 	"repository": {
 		"type": "git",
-		"url": "https://archive.eldergods.com/ho"
+		"url": "https://archive.eldergods.com/html-query-selector"
 	},
 	"keywords": [],
-	"author": "jauntywunderkind",
+	"authtml-query-selectorr": "jauntywunderkind",
 	"license": "MIT",
-	"module": "ho.js",
+	"module": "html-query-selector.js",
 	"esm": true,
 	"type": "module",
 	"dependencies": {
