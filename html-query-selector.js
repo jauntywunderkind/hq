@@ -22,36 +22,65 @@ export async function readStdin( opts= {}){
 	return buf.join("")
 }
 
-function attr( attrs){
-	if( !attrs){
-		return
+function findFragment( html){
+	if( html.querySelectorAll){
+		return html
 	}
-	let value= {}
-	for( let attr of attrs){
-		value[ attr.name]= attr.value
+	if( html.window&& html.window.document){
+		return html.window.document.body
 	}
-	return value
+	throw new Error( "no document")
 }
 
-const map= Array.prototype.map
-
-export function ho( frag){
-	if( !frag.tagName&& frag.children&& frag.children.length=== 1){
-		return ho( frag.children[ 0])
+export function htmlQuerySelector( htmls, ...selectors){
+	if( !htmls.length){
+		htmls=[ htmls]
 	}
-	return [
-		frag.tagName && frag.tagName.toLowerCase(),
-		attr( frag.attributes),
-		...map.call( frag.children, ho)
-	]
+	let
+		cur= htmls,
+		next
+	for( let selector of selectors){
+		next= []
+		for( let html of cur){
+			if( !html.querySelectorAll){
+				if( html.window.document.body){
+					html= html.window.document.body
+				}else{
+					throw new Error( "could not find fragment")
+				}
+			}
+			let found= html.querySelectorAll( selector)
+			next.push( ...found)
+		}
+		cur= next
+	}
+	return cur
 }
 
 export async function main( opts= {}){
+	let selectors= opts.selectors
+	if( !selectors){
+		let argv= opts.argv
+		if( !argv){
+			let process_= opts.process
+			if( !process_){
+				process_= process
+			}
+			if( !process_){
+				throw new Error( "could not find selectors")
+			}
+			argv= process.argv
+		}
+		selectors=argv.slice( 2)
+	}
+
 	const
 		text= await readStdin( opts),
 		dom= new Jsdom.JSDOM( text),
-		out= ho( dom.window.document)
-	console.log( JSON.stringify( out, null, "\t"))
+		out= htmlQuerySelector( dom, ...selectors)
+	for( let o of out){
+		console.log( findFragment( o).outerHTML)
+	}
 }
 if( typeof process!== "undefined"&& `file://${ process.argv[ 1]}`=== import.meta.url){
 	main()
