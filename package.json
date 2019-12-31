@@ -1,20 +1,20 @@
 {
-	"name": "html-query-selector",
+	"name": "hq",
 	"version": "1.0.0",
-	"description": "",
-	"main": "html-query-selector.js",
+	"description": "html querySelectorAll on the cli",
+	"main": "hq.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"bin": "./html-query-selector.js",
+	"bin": "./hq.js",
 	"repository": {
 		"type": "git",
-		"url": "https://archive.eldergods.com/html-query-selector"
+		"url": "https://archive.voodoowarez.com/hq"
 	},
 	"keywords": [],
-	"authtml-query-selectorr": "jauntywunderkind",
+	"authqr": "jauntywunderkind",
 	"license": "MIT",
-	"module": "html-query-selector.js",
+	"module": "hq.js",
 	"esm": true,
 	"type": "module",
 	"dependencies": {

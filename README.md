@@ -1,3 +1,3 @@
-# html-query-selector
+# hq
 
-> cli tool to select from html stdin
+> html querySelectorAll on the cli
